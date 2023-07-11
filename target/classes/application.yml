@@ -1,0 +1,49 @@
+
+
+
+
+
+
+spring:
+  application:
+    name: ApiGateway
+  cloud:
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: id-Ventas
+          uri: https://javamedicineazure.azurewebsites.net
+          predicates:
+          - Path=/**
+        - id: a
+          uri: https://pacientessaludab.azurewebsites.net
+          predicates:
+          - Path=/**
+        - id: b
+          uri: https://javaaaaas.azurewebsites.net
+          predicates:
+          - Path=/**
+
+
+# Activacion de endpoints
+#management:
+#     endpoints:
+#       web:
+#         exposure:
+#           include: '*'
+#     endpoint:
+#       health:
+#         show-details: always
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "gateway"
